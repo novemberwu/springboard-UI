@@ -7,6 +7,17 @@ type BookReview = {
     rating: number;
 };
 
+function StarRating({ rating }: { rating: number }) {
+    const fullStars = Math.floor(rating);
+    const emptyStars = 5 - fullStars;
+
+    return (
+        <div className="flex items-center text-yellow-400">
+            {'★'.repeat(fullStars)}{'☆'.repeat(emptyStars)}
+        </div>
+    );
+}
+
 async function getReview(isbn: string): Promise<BookReview> {
     const res = await fetch(`http://localhost:8080/api/reviews/${isbn}`, { cache: 'no-store' });
     if (!res.ok) {
@@ -27,7 +38,10 @@ export default async function BookReviewPage({ params: paramsPromise }: { params
                 <h1 className="mb-4 text-4xl font-bold">{review.bookTitle}</h1>
                 <p className="mb-2 text-lg">ISBN-10: {review.bookIsbn}</p>
                 <p className="mb-2 text-lg">ISBN-13: {review.bookIsbn13}</p>
-                <p className="text-lg">Rating: {review.rating}</p>
+                <div className="flex items-center">
+                    <p className="text-lg mr-2">Rating:</p>
+                    <StarRating rating={review.rating} />
+                </div>
             </div>
         </main>
     );
