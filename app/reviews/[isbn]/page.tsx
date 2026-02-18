@@ -12,7 +12,7 @@ function StarRating({ rating }: { rating: number }) {
     const emptyStars = 5 - fullStars;
 
     return (
-        <div className="flex items-center text-yellow-400">
+        <div className="flex items-center text-green-600">
             {'★'.repeat(fullStars)}{'☆'.repeat(emptyStars)}
         </div>
     );
@@ -45,9 +45,9 @@ export default async function BookReviewPage({ params: paramsPromise }: { params
 
     if (!review) {
         return (
-            <main className="flex min-h-screen flex-col items-center justify-center bg-gray-900 text-white p-24">
-                <div className="w-full max-w-2xl rounded-lg bg-gray-800 p-8 shadow-lg">
-                    <h1 className="mb-4 text-4xl font-bold">Review not found for ISBN: {params.isbn}</h1>
+            <main className="flex min-h-screen flex-col items-center justify-center bg-green-50 text-gray-800 p-24">
+                <div className="w-full max-w-2xl rounded-lg bg-white p-8 shadow-lg">
+                    <h1 className="mb-4 text-4xl font-bold text-green-800">Review not found for ISBN: {params.isbn}</h1>
                     <p className="text-lg">Please check the ISBN and try again.</p>
                 </div>
             </main>
@@ -55,9 +55,9 @@ export default async function BookReviewPage({ params: paramsPromise }: { params
     }
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center bg-gray-900 text-white p-24">
-            <div className="w-full max-w-2xl rounded-lg bg-gray-800 p-8 shadow-lg">
-                <h1 className="mb-4 text-4xl font-bold">{review.bookTitle}</h1>
+        <main className="flex min-h-screen flex-col items-center justify-center bg-green-50 text-gray-800 p-24">
+            <div className="w-full max-w-2xl rounded-lg bg-white p-8 shadow-lg">
+                <h1 className="mb-4 text-4xl font-bold text-green-800">{review.bookTitle}</h1>
                 <p className="mb-2 text-lg">ISBN-10: {review.bookIsbn}</p>
                 <p className="mb-2 text-lg">ISBN-13: {review.bookIsbn13}</p>
                 <div className="flex items-center">
