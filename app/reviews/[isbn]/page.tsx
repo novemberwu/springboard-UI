@@ -18,8 +18,12 @@ function StarRating({ rating }: { rating: number }) {
     );
 }
 
+const API_BASE_URL = process.env.NODE_ENV === 'production'
+    ? 'https://book-service-latest-77hh.onrender.com'
+    : 'http://localhost:8080';
+
 async function getReview(isbn: string): Promise<BookReview | null> {
-    const res = await fetch(`http://localhost:8080/api/reviews/${isbn}`, { cache: 'no-store' });
+    const res = await fetch(`${API_BASE_URL}/api/reviews/${isbn}`, { cache: 'no-store' });
     if (!res.ok) {
         // Optionally, handle specific HTTP errors here if needed
         return null; 
